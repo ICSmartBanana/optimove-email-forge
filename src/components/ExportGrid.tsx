@@ -98,10 +98,9 @@ export const ExportGrid = ({ combinations, loading, onPreview, onExport }: Expor
                       {combination.mailingItem}
                     </div>
                     {!combination.isValid && (
-                      <AlertTriangle 
-                        className="ml-2 h-4 w-4 text-amber-500 cursor-pointer" 
-                        title="Content validation issues"
-                      />
+                      <div className="ml-2 cursor-pointer" title="Content validation issues">
+                        <AlertTriangle className="h-4 w-4 text-amber-500" />
+                      </div>
                     )}
                   </div>
                 </td>
