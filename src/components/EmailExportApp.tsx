@@ -19,19 +19,19 @@ export const EmailExportApp = () => {
 
   // Generate combinations when selections change
   useEffect(() => {
-    if (selectedMailingItems.length > 0 && selectedLanguages.length > 0 && selectedOptimoveFolders.length > 0) {
+    if (selectedMailingSites.length > 0 && selectedMailingItems.length > 0 && selectedLanguages.length > 0) {
       setLoading(true);
       const newCombinations = generateCombinations(
+        selectedMailingSites,
         selectedMailingItems,
-        selectedLanguages,
-        selectedOptimoveFolders
+        selectedLanguages
       );
       setCombinations(newCombinations);
       setLoading(false);
     } else {
       setCombinations([]);
     }
-  }, [selectedMailingItems, selectedLanguages, selectedOptimoveFolders]);
+  }, [selectedMailingSites, selectedMailingItems, selectedLanguages]);
 
   const handlePreview = (combination: ExportCombination) => {
     setPreviewItem(combination);

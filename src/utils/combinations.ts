@@ -2,9 +2,9 @@
 import { ExportCombination } from '../types/export';
 
 export const generateCombinations = (
+  sites: string[],
   mailingItems: string[],
-  languages: string[],
-  optimoveFolders: string[]
+  languages: string[]
 ): ExportCombination[] => {
   const combinations: ExportCombination[] = [];
   
@@ -27,30 +27,22 @@ export const generateCombinations = (
     'it': 'Italiano',
   };
 
-  const mockOptimoveData: Record<string, string> = {
-    'opt1': 'Marketing Templates',
-    'opt2': 'Transactional',
-    'opt3': 'Welcome Series',
-    'opt4': 'Promotional',
-    'opt5': 'Support',
-  };
-
-  mailingItems.forEach(mailingItem => {
-    languages.forEach(language => {
-      optimoveFolders.forEach(folder => {
+  sites.forEach(site => {
+    mailingItems.forEach(mailingItem => {
+      languages.forEach(language => {
         const mailingData = mockMailingData[mailingItem];
         const isValid = Math.random() > 0.1; // 90% valid for demo
         
         combinations.push({
-          id: `${mailingItem}-${language}-${folder}`,
+          id: `${site}-${mailingItem}-${language}`,
           mailingItem: mailingData?.name || mailingItem,
           mailingItemId: mailingItem,
           label: mailingData?.label || 'Unknown Label',
           brand: mailingData?.brand || 'Unknown Brand',
           language: mockLanguageData[language] || language,
           languageCode: language,
-          optimoveFolder: mockOptimoveData[folder] || folder,
-          optimoveFolderId: folder,
+          optimoveFolder: '', // Disabled for now
+          optimoveFolderId: '',
           lastModified: mailingData?.lastModified || new Date().toISOString(),
           modifiedBy: mailingData?.modifiedBy || 'Unknown',
           status: Math.random() > 0.7 ? 'exported' : 'not-exported',

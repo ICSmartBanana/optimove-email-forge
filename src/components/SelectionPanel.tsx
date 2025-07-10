@@ -87,6 +87,7 @@ export const SelectionPanel = ({
             onSelectionChange={setSelectedOptimoveFolders}
             placeholder="Select folders..."
             loading={loadingOptimoveFolders}
+            disabled={true}
           />
         </div>
       </div>

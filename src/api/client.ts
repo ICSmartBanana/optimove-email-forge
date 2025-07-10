@@ -37,7 +37,7 @@ class ApiClient {
   }
 
   getLanguages(mailingItemId: string) {
-    return this.get(`/languages?mailingItem=${mailingItemId}`);
+    return this.get<{languages: string[]}>(`/languages?mailingItem=${mailingItemId}`);
   }
 
   getOptimoveFolders() {
@@ -45,19 +45,19 @@ class ApiClient {
   }
 
   getMailingHtml(id: string, language: string) {
-    return this.get(`/mailing-html/${id}?language=${language}`);
+    return this.get<{html: string}>(`/mailing-html/${id}?language=${language}`);
   }
 
   getPlaceholders(id: string) {
-    return this.get(`/placeholders?id=${id}`);
+    return this.get<{placeholders: string[]}>(`/placeholders?id=${id}`);
   }
 
   checkAvailability(mailingItem: string, language: string) {
-    return this.get(`/check-availability?mailingItem=${mailingItem}&language=${language}`);
+    return this.get<{available: boolean}>(`/check-availability?mailingItem=${mailingItem}&language=${language}`);
   }
 
   getMetadata(mailingItem: string, language: string) {
-    return this.get(`/metadata?mailingItem=${mailingItem}&language=${language}`);
+    return this.get<{subject: string, fromName: string, replyTo: string}>(`/metadata?mailingItem=${mailingItem}&language=${language}`);
   }
 
   exportToOptimove(data: any) {
